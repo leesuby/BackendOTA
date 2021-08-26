@@ -1,0 +1,23 @@
+{
+  "name": "backendota",
+  "version": "1.0.0",
+  "description": "Backend for OTA",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leesuby/BackendOTA.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leesuby/BackendOTA/issues"
+  },
+  "homepage": "https://github.com/leesuby/BackendOTA#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
+}
