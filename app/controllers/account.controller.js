@@ -28,11 +28,11 @@ exports.login=(req,res)=>{
                 Account.checkPw(account,(err, data) => {
                     if (err) {
                       if (err.kind === "Not_found") {
-                        res.status(404).send({
+                        res.status(405).send({
                           message: "Your password is incorrect."
                         });
                       } else {
-                        res.status(500).send({
+                        res.status(501).send({
                           message: "Error retrieving Account. "
                         });
                       }
