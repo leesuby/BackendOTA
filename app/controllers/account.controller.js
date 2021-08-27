@@ -8,12 +8,13 @@ exports.login=(req,res)=>{
         });
     }
     console.log(req.body.ID)
-    
+
     console.log("asdawdaw ",req.body);
     console.log("asdawea",req.body.ID);
+
     const account=new Account({
-        ID=req.body.ID,
-        password=req.body.password
+        ID: req.body.ID,
+        password: req.body.password
     });
     
     Account.findById(account.ID,(err,data)=>{
@@ -57,8 +58,8 @@ exports.changePassword = (req, res) => {
     
     
     const account=new Account({
-        ID=req.body.ID,
-        password=req.body.oldpw
+        ID : req.body.ID,
+        password : req.body.oldpw
     });
 
     Customer.updatePw(
