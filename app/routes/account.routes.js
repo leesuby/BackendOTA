@@ -1,7 +1,9 @@
+var router = require('express').Router();
 module.exports = app =>{
     const account = require("../controllers/account.controller.js");
 
-    app.post("/login",account.login);
+    router.post("/login",account.login);
 
-    app.post("/changepassword",account.changePassword);
+    router.post("/changepassword",account.changePassword);
 }
+module.exports = router
