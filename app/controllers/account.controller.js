@@ -7,13 +7,15 @@ exports.login=(req,res)=>{
           message: "Content can not be empty!"
         });
     }
+    console.log(req.body.ID)
 
     const account=new Account({
         ID=req.body.ID,
         password=req.body.password
     });
-
+    
     Account.findById(account.ID,(err,data)=>{
+        
         if (err) {
             if (err.kind === "Not_found") {
               res.status(404).send({
