@@ -20,11 +20,18 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to OTA application." });
 });
 
-app.use('/account',accountRoutes);
-app.use('/students',studentsRoutes);
-app.use('/parents',parentsRoutes);
-app.use('/teachers',teachersRoutes);
-app.use('/admin',adminRoutes);
+app.use(app.router);
+accountRoutes.initialize(app);
+studentsRoutes.initialize(app);
+parentsRoutes.initialize(app);
+teachersRoutes.initialize(app);
+adminRoutes.initialize(app)
+
+// app.use('/account',accountRoutes);
+// app.use('/students',studentsRoutes);
+// app.use('/parents',parentsRoutes);
+// app.use('/teachers',teachersRoutes);
+// app.use('/admin',adminRoutes);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
