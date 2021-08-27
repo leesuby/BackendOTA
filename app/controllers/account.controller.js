@@ -7,8 +7,8 @@ exports.login=(req,res)=>{
           message: "Content can not be empty!"
         });
     }
-    console.log(req.body.ID)
-    console.log("asdwaweaea")
+    console.log(req.body.ID);
+    console.log("asdwaweaea");
     console.log("asdawdaw ",req.body);
     console.log("asdawea",req.body.ID);
 
