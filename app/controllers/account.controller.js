@@ -62,13 +62,9 @@ exports.changePassword = (req, res) => {
     
     
     const account=new Account({
-<<<<<<< HEAD
-        ID: req.body.ID,
-        password: req.body.oldpw
-=======
         ID : req.body.ID,
         password : req.body.oldpw
->>>>>>> edf3a72f9d1dd8eb14d3f7e8c20161569afda290
+
     });
 
     Customer.updatePw(
