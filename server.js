@@ -9,6 +9,7 @@ const accountRoutes=require("./app/routes/account.routes.js");
 // const teachersRoutes=require("./app/routes/teachers.routes.js");
 // const adminRoutes=require("./app/routes/admin.routes.js");
 
+
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
@@ -17,16 +18,32 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
+  console.log("Adsawea")
+  console.log(req.body)
   res.json({ message: "Welcome to OTA application." });
 });
 
+<<<<<<< HEAD
 //app.use('/account',accountRoutes);
+=======
+// app.use(app.router);
+// accountRoutes.initialize(app);
+// studentsRoutes.initialize(app);
+// parentsRoutes.initialize(app);
+// teachersRoutes.initialize(app);
+// adminRoutes.initialize(app)
+
+app.use('/account',accountRoutes);
+>>>>>>> edf3a72f9d1dd8eb14d3f7e8c20161569afda290
 // app.use('/students',studentsRoutes);
 // app.use('/parents',parentsRoutes);
 // app.use('/teachers',teachersRoutes);
 // app.use('/admin',adminRoutes);
+<<<<<<< HEAD
 
 require("./app/routes/account.routes.js")(app);
+=======
+>>>>>>> edf3a72f9d1dd8eb14d3f7e8c20161569afda290
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
