@@ -21,9 +21,11 @@ exports.login=(req,res)=>{
         
         if (err) {
             if (err.kind === "Not_found") {
-              res.status(404).send(`Not found Account with id ${account.ID}.`);
+              res.status(404).json({
+                message:`Not found Account with id ${account.ID}.`
+              });
             } else {
-              res.status(500).send({
+              res.status(500).json({
                 message: "Error retrieving Account with id " + account.ID
               });
             }
@@ -31,15 +33,15 @@ exports.login=(req,res)=>{
                 Account.checkPw(account,(err, data) => {
                     if (err) {
                       if (err.kind === "Not_found") {
-                        res.status(405).send({
+                        res.status(405).json({
                           message: "Your password is incorrect."
                         });
                       } else {
-                        res.status(501).send({
+                        res.status(501).json({
                           message: "Error retrieving Account. "
                         });
                       }
-                    } else res.status(200).send(data);//send data or mess tb login successfullly
+                    } else res.status(200).json(data);//send data or mess tb login successfullly
                 });
           }
     });
@@ -48,7 +50,7 @@ exports.login=(req,res)=>{
 exports.changePassword = (req, res) => {
     // Validate Request
     if (!req.body) {
-      res.status(400).send({
+      res.status(400).json({
         message: "Content can not be empty!"
       });
     }
@@ -66,15 +68,15 @@ exports.changePassword = (req, res) => {
       (err, data) => {
         if (err) {
           if (err.kind === "Not_found") {
-            res.status(404).send({
+            res.status(404).json({
               message: "Your old password is incorrect."
             });
           } else {
-            res.status(500).send({
+            res.status(500).json({
               message: "Error changing password with id " + account.ID
             });
           }
-        } else res.status(200).send(data);//send data or mess tb change password successfullly
+        } else res.status(200).json(data);//send data or mess tb change password successfullly
       }
     );
   };
