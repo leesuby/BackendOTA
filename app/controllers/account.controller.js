@@ -21,9 +21,7 @@ exports.login=(req,res)=>{
         
         if (err) {
             if (err.kind === "Not_found") {
-              res.status(404).send({
-                message: `Not found Account with id ${account.ID}.`
-              });
+              res.status(404).send(`Not found Account with id ${account.ID}.`);
             } else {
               res.status(500).send({
                 message: "Error retrieving Account with id " + account.ID
