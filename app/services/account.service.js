@@ -6,7 +6,7 @@ const Account = function(account){
 }
 
 Account.findById = (accountId, result) => {
-    sql.query(`SELECT * FROM account WHERE id = ${accountId}`, (err, res) => {
+    sql.query(`SELECT * FROM Account WHERE id = "${accountId}"`, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -25,7 +25,7 @@ Account.findById = (accountId, result) => {
   };
 
 Account.checkPw = (account, result) => {
-    sql.query("SELECT * FROM account WHERE id = ?,Password=?",[account.ID,account.password], (err, res) => {
+    sql.query("SELECT * FROM Account WHERE id = ? and Password=?",[account.ID,account.password], (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -44,7 +44,7 @@ Account.checkPw = (account, result) => {
 };
 
 Account.updatePw = (newPw,account, result) => {
-    sql.query("UPDATE account SET Password = ? WHERE id = ?,password=?",
+    sql.query("UPDATE account SET Password = ? WHERE id = ? and password=?",
         [newPw,account.ID,account.password],(err, res) => {
           if (err) {
             console.log("error: ", err);
