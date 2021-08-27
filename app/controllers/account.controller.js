@@ -8,7 +8,9 @@ exports.login=(req,res)=>{
         });
     }
     console.log(req.body.ID)
-
+    
+    console.log("asdawdaw ",req.body);
+    console.log("asdawea",req.body.ID);
     const account=new Account({
         ID=req.body.ID,
         password=req.body.password
@@ -52,7 +54,7 @@ exports.changePassword = (req, res) => {
       });
     }
   
-    console.log(req.body);
+    
     
     const account=new Account({
         ID=req.body.ID,
