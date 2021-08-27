@@ -18,6 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
+  console.log("Adsawea")
+  console.log(req.body)
   res.json({ message: "Welcome to OTA application." });
 });
 
