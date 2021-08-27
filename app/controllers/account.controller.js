@@ -3,7 +3,7 @@ const Account = require("../services/account.service.js");
 
 exports.login=(req,res)=>{
     if (!req.body) {
-        res.status(400).send({
+        res.status(400).json({
           message: "Content can not be empty!"
         });
     }
@@ -41,7 +41,11 @@ exports.login=(req,res)=>{
                           message: "Error retrieving Account. "
                         });
                       }
-                    } else res.status(200).json(data);//send data or mess tb login successfullly
+                    } else res.status(200).json({
+                      message: "Login successfully",
+                      id_password : data
+
+                    });//send data or mess tb login successfullly
                 });
           }
     });
