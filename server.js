@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-//const accountRoutes=require("./app/routes/account.routes.js");
+const accountRoutes=require("./app/routes/account.routes.js");
 // const studentsRoutes=require("./app/routes/students.routes.js");
 // const parentsRoutes=require("./app/routes/parents.routes.js");
 // const teachersRoutes=require("./app/routes/teachers.routes.js");
@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 // teachersRoutes.initialize(app);
 // adminRoutes.initialize(app)
 
-//app.use('/account',accountRoutes);
+app.use('/account',accountRoutes);
 
 // app.use('/students',studentsRoutes);
 // app.use('/parents',parentsRoutes);
@@ -41,7 +41,7 @@ app.get("/", (req, res) => {
 // app.use('/admin',adminRoutes);
 
 
-require("./app/routes/account.routes.js")(app);
+// require("./app/routes/account.routes.js")(app);
 
 
 
