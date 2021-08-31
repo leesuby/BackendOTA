@@ -12,7 +12,7 @@ function handleDisconnect() {
     password: dbConfig.PASSWORD,
     database: dbConfig.DB
   }); // the old one cannot be reused.
-
+  
   connection.connect(function(err) {              // The server is either down
     if(err) {                                     // or restarting (takes a while sometimes).
       console.log('error when connecting to db:', err);
@@ -24,14 +24,15 @@ function handleDisconnect() {
   connection.on('error', function(err) {
     console.log('db error', err);
     if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
-      connection.destroy();
       handleDisconnect();                         // lost due to either server restart, or a
-    } else {                                      // connnection idle timeout (the wait_timeout
+    } else {
+      if(err.fatal)
+        handleDisconnect();                        // connnection idle timeout (the wait_timeout
       throw err;                                  // server variable configures this)
     }
   });
+  module.exports = connection;
 }
 
 
 handleDisconnect()
-module.exports = connection;
