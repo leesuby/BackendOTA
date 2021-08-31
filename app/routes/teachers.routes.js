@@ -7,9 +7,9 @@ router.post("/viewgrade",teacher.view_grade);
 
 router.post("/editgrade",teacher.edit_grade);
 
-// router.post("/class-notification",student.view_notification);
+router.post("/viewattendance",teacher.view_attendance);
 
-// router.post("/timetable",student.class_schedule);
+router.post("/editattendance",teacher.edit_attendance);
 
 
 

@@ -80,9 +80,51 @@ Teacher.editgrade = (req, result) => {
       }
   
       // not found Customer with the id
-      result({ kind: "Not_found" }, null);
+      result({ kind: "Successfully" }, null);
     });
 };
 
+Teacher.viewattendance = (req, result) => {
+    connection.query(`SELECT a.ID_Student as 'StuId',stu.Name as 'StuName',Week1,Week2,Week3,Week4,Week5,Week6,Week7,Week8,Week9,Week10
+                FROM Attendance a join Subject s on a.Subject=s.id join Student stu on stu.id=a.ID_Student
+                WHERE s.Name = "${req.body.subjectName}" and a.Class="${req.body.class}" `, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+  
+      if (res.length) {
+        console.log("Found Attendance: ", res);
+        result(null, res);
+        return;
+      }
+  
+      // not found Customer with the id
+      result({ kind: "Not_found" }, null);
+    });
+  };
+
+Teacher.editattendance = (req, result) => {
+    connection.query(`UPDATE Attendance a join Subject s on s.id=a.Subject
+                    SET Week1="${req.body.Week1}",Week2="${req.body.Week2}",Week3="${req.body.Week3}",Week4="${req.body.Week4}",Week5="${req.body.Week5}",Week6="${req.body.Week6}",Week7="${req.body.Week7}",Week8="${req.body.Week8}",Week9="${req.body.Week9}",Week10="${req.body.Week10}"
+                    WHERE  s.Name = "${req.body.subjectName}" and g.ID_Student= "${req.body.StudentID}" `
+               , (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+  
+      if (res.length) {
+        console.log("Found : ", res);
+        result(null, res);
+        return;
+      }
+  
+      // not found Customer with the id
+      result({ kind: "Successfully" }, null);
+    });
+};
 
 module.exports = Teacher;
