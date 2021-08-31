@@ -149,3 +149,80 @@ exports.edit_attendance=(req,res)=>{
           }
     });
 };
+
+
+exports.timetable=(req,res)=>{
+    if (!req.body) {
+        res.status(400).json({
+          message: "Content can not be empty!"
+        });
+    }
+    
+    console.log(req.body);
+    
+
+    // const student=new Student({
+    //     ID: req.body.stuID,
+        
+    // });
+    
+    Teacher.viewtimetable(req,(err,data)=>{
+        
+        if (err) {
+            if (err.kind === "Not_found") {
+              res.status(404).json({
+                message:`Not found timetable with id ${req.body.id}.`
+              });
+            } else {
+              res.status(500).json({
+                message: "Error retrieving database "
+              });
+            }
+          } else {
+            res.status(200).json({
+                message: "Query successfully",
+                timetable : data
+
+              });
+          }
+    });
+};
+
+
+exports.notification=(req,res)=>{
+    if (!req.body) {
+        res.status(400).json({
+          message: "Content can not be empty!"
+        });
+    }
+    
+    console.log(req.body);
+    
+
+    // const student=new Student({
+    //     ID: req.body.stuID,
+        
+    // });
+    
+    Teacher.viewNotification(req,(err,data)=>{
+        
+        if (err) {
+            if (err.kind === "Not_found") {
+              res.status(404).json({
+                message:`Not found notification with id ${req.body.id}.`
+              });
+            } else {
+              res.status(500).json({
+                message: "Error retrieving database "
+              });
+            }
+          } else {
+            res.status(200).json({
+                message: "Query successfully",
+                notification : data
+
+              });
+          }
+    });
+};
+

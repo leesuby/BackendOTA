@@ -11,8 +11,7 @@ router.post("/viewattendance",teacher.view_attendance);
 
 router.post("/editattendance",teacher.edit_attendance);
 
+router.post("/timetable",teacher.timetable);
 
-
-// router.post("/tuition-fee",student.view_tuitionfee);
-
+router.post("/notification",teacher.notification)
 module.exports=router;

@@ -127,4 +127,47 @@ Teacher.editattendance = (req, result) => {
     });
 };
 
+
+Teacher.viewtimetable = (req, result) => {
+    connection.query(`SELECT Class , s.Name as "SubjectName", Time , Day_Week
+                FROM Assignment a Join Timetable t on t.Assigment_ID=a.id Join Subject s on s.id=a.Subject_ID
+                WHERE a.Teacher_ID = "${req.body.id}"  `, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+  
+      if (res.length) {
+        console.log("Found Attendance: ", res);
+        result(null, res);
+        return;
+      }
+  
+      // not found Customer with the id
+      result({ kind: "Not_found" }, null);
+    });
+  };
+
+
+Teacher.viewNotification= (req, result) => {
+        connection.query(`SELECT Sender,Topic,Content
+                        FROM Mail m
+                        WHERE  m.Receiver = "${req.body.id}" or m.Receiver ="ALL" `, (err, res) => {
+    if (err) {  
+    console.log("error: ", err);
+    result(err, null);
+    return;
+    }
+    
+    if (res.length) {
+    console.log("Found : ", res);
+    result(null, res);
+    return;
+    }
+    
+    // not found Customer with the id
+    result({ kind: "Not_found" }, null);
+    });
+  };  
 module.exports = Teacher;
