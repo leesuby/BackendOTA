@@ -130,7 +130,7 @@ Teacher.editattendance = (req, result) => {
 
 Teacher.viewtimetable = (req, result) => {
     connection.query(`SELECT Class , s.Name as "SubjectName", Time , Day_Week
-                FROM Assignment a Join Timetable t on t.Assigment_ID=a.id Join Subject s on s.id=a.Subject_ID
+                FROM Assignment a Join Timetable t on t.Assignment_ID=a.id Join Subject s on s.id=a.Subject_ID
                 WHERE a.Teacher_ID = "${req.body.id}"  `, (err, res) => {
       if (err) {
         console.log("error: ", err);
