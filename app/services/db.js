@@ -31,7 +31,6 @@ function handleDisconnect() {
       throw err;                                  // server variable configures this)
     }
   });
-  module.exports = connection;
 }
 
 
