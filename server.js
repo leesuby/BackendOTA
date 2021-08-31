@@ -5,7 +5,7 @@ const app = express();
 
 const accountRoutes=require("./app/routes/account.routes.js");
 const studentsRoutes=require("./app/routes/students.routes.js");
-// const parentsRoutes=require("./app/routes/parents.routes.js");
+const parentsRoutes=require("./app/routes/parents.routes.js");
 // const teachersRoutes=require("./app/routes/teachers.routes.js");
 // const adminRoutes=require("./app/routes/admin.routes.js");
 
@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 app.use('/account',accountRoutes);
 
 app.use('/students',studentsRoutes);
-// app.use('/parents',parentsRoutes);
+app.use('/parents',parentsRoutes);
 // app.use('/teachers',teachersRoutes);
 // app.use('/admin',adminRoutes);
 
