@@ -28,7 +28,7 @@
 - class schedule res:
 	+status(500):query thực hiện xảy ra lỗi. send message err
 	+status(404): thực hiện query thành công nhưng k có data. send message err
-	+status(200):success. send data dạng json array chứa id lớp học và thời khóa biểu theo môn{{Class:,Name:,Time:,Day_Week:,Teacher_ID,TeacherName:},..}.
+	+status(200):success. send data dạng json array chứa id lớp học và thời khóa biểu theo môn{{ClassId:,SubName:,Time:,Day_Week:,Teacher_ID,TeacherName:},..}.
 
 
 - grade req:
@@ -43,7 +43,7 @@
 
 - tuition fee req:
 	+ method:post
-	+ url:https://ota-be-server.herokuapp.com/students/class-notification/
+	+ url:https://ota-be-server.herokuapp.com/students/tuition-fee/
 	+ body: {stuID}//id student
 - tuition fee res:
 	+status(500):query thực hiện xảy ra lỗi. send message err
