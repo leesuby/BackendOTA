@@ -5,7 +5,7 @@ const teacher = require("../controllers/teachers.controller.js");
 
 router.post("/viewgrade",teacher.view_grade);
 
-// router.post("/attendance",student.view_attendance);
+router.post("/editgrade",teacher.edit_grade);
 
 // router.post("/class-notification",student.view_notification);
 

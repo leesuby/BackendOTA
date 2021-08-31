@@ -62,6 +62,27 @@ Teacher.viewgrade = (req, result) => {
     });
 };
 
+Teacher.editgrade = (req, result) => {
+    connection.query(`UPDATE Subject s join Grade g on s.id=g.Subject_ID
+                    SET 15phut_1="${req.body.test1}",15phut_2="${req.body.test2}",15phut_3="${req.body.test3}",15phut_4="${req.body.test4}",45phut_1="${req.body.test5}",45phut_2="${req.body.test6}",giuaki="${req.body.test7}",cuoiki="${req.body.test8}"
+                    WHERE  s.Name = "${req.body.subjectName}" and g.Student_ID= "${req.body.StudentID}" `
+               , (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+  
+      if (res.length) {
+        console.log("Found : ", res);
+        result(null, res);
+        return;
+      }
+  
+      // not found Customer with the id
+      result({ kind: "Not_found" }, null);
+    });
+};
 
 
 module.exports = Teacher;
