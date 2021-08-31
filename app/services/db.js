@@ -31,5 +31,5 @@ function handleDisconnect() {
 }
 
 
-
-module.exports = handleDisconnect();
+handleDisconnect()
+module.exports = connection;
