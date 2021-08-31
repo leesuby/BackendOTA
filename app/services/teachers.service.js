@@ -61,3 +61,7 @@ Teacher.viewgrade = (req, result) => {
       result({ kind: "Not_found" }, null);
     });
 };
+
+
+
+module.exports = Teacher;
