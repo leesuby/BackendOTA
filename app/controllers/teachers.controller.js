@@ -99,7 +99,7 @@ exports.view_attendance=(req,res)=>{
               });
             } else {
               res.status(500).json({
-                message: "Error retrieving grade "
+                message: "Error retrieving database "
               });
             }
           } else {
@@ -137,7 +137,7 @@ exports.edit_attendance=(req,res)=>{
               });
             } else {
               res.status(500).json({
-                message: "Error retrieving grade "
+                message: "Error retrieving database "
               });
             }
           } else {

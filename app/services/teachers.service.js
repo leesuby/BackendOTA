@@ -108,7 +108,7 @@ Teacher.viewattendance = (req, result) => {
 Teacher.editattendance = (req, result) => {
     connection.query(`UPDATE Attendance a join Subject s on s.id=a.Subject
                     SET Week1="${req.body.Week1}",Week2="${req.body.Week2}",Week3="${req.body.Week3}",Week4="${req.body.Week4}",Week5="${req.body.Week5}",Week6="${req.body.Week6}",Week7="${req.body.Week7}",Week8="${req.body.Week8}",Week9="${req.body.Week9}",Week10="${req.body.Week10}"
-                    WHERE  s.Name = "${req.body.subjectName}" and g.ID_Student= "${req.body.StudentID}" `
+                    WHERE  s.Name = "${req.body.subjectName}" and a.ID_Student= "${req.body.StudentID}" `
                , (err, res) => {
       if (err) {
         console.log("error: ", err);
