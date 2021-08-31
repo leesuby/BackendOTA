@@ -1,4 +1,41 @@
-const sql = require("./db.js");
+const mysql = require("mysql");
+const dbConfig = require("../config/db.config.js");
+
+// Create a connection to the database
+
+var connection;
+
+function handleDisconnect() {
+  connection = mysql.createConnection({
+    host: dbConfig.HOST,
+    user: dbConfig.USER,
+    password: dbConfig.PASSWORD,
+    database: dbConfig.DB
+  }); // the old one cannot be reused.
+  
+  connection.connect(function(err) {              // The server is either down
+    if(err) {                                     // or restarting (takes a while sometimes).
+      console.log('error when connecting to db:', err);
+      setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
+    }
+    console.log('connect database successfully!!',);                                  // to avoid a hot loop, and to allow our node script to
+  });                                     // process asynchronous requests in the meantime.
+                                          // If you're also serving http, display a 503 error.
+  connection.on('error', function(err) {
+    console.log('db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+      handleDisconnect();                         // lost due to either server restart, or a
+    } else {
+      if(err.fatal)
+        handleDisconnect();                        // connnection idle timeout (the wait_timeout
+      throw err;                                  // server variable configures this)
+    }
+  });
+}
+
+
+handleDisconnect()
+
 
 const Account = function(account){
     this.ID= account.ID;
@@ -6,7 +43,7 @@ const Account = function(account){
 }
 
 Account.findById = (accountId, result) => {
-    sql.query(`SELECT * FROM Account WHERE id = "${accountId}"`, (err, res) => {
+    connection.query(`SELECT * FROM Account WHERE id = "${accountId}"`, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -25,7 +62,7 @@ Account.findById = (accountId, result) => {
   };
 
 Account.checkPw = (account, result) => {
-    sql.query("SELECT * FROM Account WHERE id = ? and Password=?",[account.ID,account.password], (err, res) => {
+    connection.query("SELECT * FROM Account WHERE id = ? and Password=?",[account.ID,account.password], (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -44,7 +81,7 @@ Account.checkPw = (account, result) => {
 };
 
 Account.updatePw = (newPw,account, result) => {
-    sql.query("UPDATE account SET Password = ? WHERE id = ? and password=?",
+    connection.query("UPDATE account SET Password = ? WHERE id = ? and password=?",
         [newPw,account.ID,account.password],(err, res) => {
           if (err) {
             console.log("error: ", err);
