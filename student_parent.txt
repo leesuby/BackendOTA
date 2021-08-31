@@ -1,0 +1,116 @@
+
+@@student
+
+- attendance req:
+	+ method:post
+	+ url:https://ota-be-server.herokuapp.com/students/attendance/
+	+ body: {stuID}//id student
+- attendance res:
+	+status(500):query thực hiện xảy ra lỗi. send message err
+	+status(404): thực hiện query thành công nhưng k có data. send message err
+	+status(200):success. send data dạng json array chứa môn stu học và điểm danh theo tuần {{Subject:,Name:,Week1:(1,0 or NULL),Week2,:...,Week10:},..}.
+
+
+- class notification req:
+	+ method:post
+	+ url:https://ota-be-server.herokuapp.com/students/class-notification/
+	+ body: {stuID}//id student
+- class notification res:
+	+status(500):query thực hiện xảy ra lỗi. send message err
+	+status(404): thực hiện query thành công nhưng k có data. send message err(không có thông báo nào của stu đó)
+	+status(200):success. send data dạng json array chứa nhiều thông báo của stu đó {{Sender:,Topic:,Content:},..}.
+
+
+- class schedule req:
+	+ method:post
+	+ url:https://ota-be-server.herokuapp.com/students/timetable/
+	+ body: {stuID}//id student
+- class schedule res:
+	+status(500):query thực hiện xảy ra lỗi. send message err
+	+status(404): thực hiện query thành công nhưng k có data. send message err
+	+status(200):success. send data dạng json array chứa id lớp học và thời khóa biểu theo môn{{Class:,Name:,Time:,Day_Week:,Teacher_ID,TeacherName:},..}.
+
+
+- grade req:
+	+ method:post
+	+ url:https://ota-be-server.herokuapp.com/students/grade/
+	+ body: {stuID}//id student
+- grade res:
+	+status(500):query thực hiện xảy ra lỗi. send message err
+	+status(404): thực hiện query thành công nhưng k có data. send message err
+	+status(200):success. send data dạng json array chứa môn stu học và điểm danh theo tuần {{SubId:,SubName:,15phut_1:,15phut_2:,15phut_3:,15phut_4,45phut_1:,45phut_2:,giuaki:,cuoiki:},..}.
+
+
+- tuition fee req:
+	+ method:post
+	+ url:https://ota-be-server.herokuapp.com/students/class-notification/
+	+ body: {stuID}//id student
+- tuition fee res:
+	+status(500):query thực hiện xảy ra lỗi. send message err
+	+status(404): thực hiện query thành công nhưng k có data. send message err(không có thông báo nào của stu đó)
+	+status(200):success. send data dạng json array chứa nhiều thông báo học phí của stu đó {{Content:},..}.
+
+
+
+
+
+
+@@parent 
+
+- attendance req:
+	+ method:post
+	+ url:https://ota-be-server.herokuapp.com/parents/attendance/
+	+ body: {paID}//id parent 
+- attendance res:
+	+status(500):query thực hiện xảy ra lỗi. send message err
+	+status(404): thực hiện query thành công nhưng k có data. send message err
+	+status(200):success. send data dạng json array chứa môn stu học và điểm danh theo tuần {{SubId:,SubName:,Week1:(1,0 or NULL),Week2,:...,Week10:},..}.
+
+
+- class schedule req:
+	+ method:post
+	+ url:https://ota-be-server.herokuapp.com/parents/timetable/
+	+ body: {paID}//id parent 
+- class schedule res:
+	+status(500):query thực hiện xảy ra lỗi. send message err
+	+status(404): thực hiện query thành công nhưng k có data. send message err
+	+status(200):success. send data dạng json array chứa id lớp học và thời khóa biểu theo môn{{ClassId:,SubName:,Time:,Date:},..}.
+
+
+- grade req:
+	+ method:post
+	+ url:https://ota-be-server.herokuapp.com/parents/grade/
+	+ body: {paID}//id parent 
+- grade res:
+	+status(500):query thực hiện xảy ra lỗi. send message err
+	+status(404): thực hiện query thành công nhưng k có data. send message err
+	+status(200):success. send data dạng json array chứa môn stu học và điểm danh theo tuần {{SubId:,SubName:,15phut_1:,15phut_2:,15phut_3:,15phut_4,45phut_1:,45phut_2:,giuaki:,cuoiki:},..}.
+
+
+- tuition fee req:
+	+ method:post
+	+ url:https://ota-be-server.herokuapp.com/parents/class-notification/
+	+ body: {paID}//id parent 
+- tuition fee res:
+	+status(500):query thực hiện xảy ra lỗi. send message err
+	+status(404): thực hiện query thành công nhưng k có data. send message err(không có thông báo nào của stu đó)
+	+status(200):success. send data dạng json array chứa nhiều thông báo học phí của stu đó {{Content:},..}.
+
+
+-absent letter req:
+	+ method:post
+	+ url:https://ota-be-server.herokuapp.com/parents/absent-letter/
+	+ body: {paID:,teacherMail:,topic:,content:}//id parent 
+- absent letter res:
+	+status(500):query thực hiện xảy ra lỗi. send message err
+	+status(404): thực hiện query thành công nhưng k có data. send message err
+	+status(200):success. mess tb gửi thành công
+
+//status 404,500 là error =>xét res nếu có lỗi thì show message
+
+
+
+
+
+
+
