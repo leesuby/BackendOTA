@@ -44,7 +44,7 @@ const Teacher = function(teacher){
 Teacher.viewgrade = (req, result) => {
     connection.query(`SELECT stu.Name as 'StudentName',15phut_1,15phut_2,15phut_3,15phut_4,45phut_1,45phut_2,giuaki,cuoiki
                 FROM Subject s join Grade g on s.id=g.Subject_ID join Student stu on g.stuID=stu.ID
-                WHERE  s.Name = "${req.body.subjectName}" and g.classID= "${req.body.class}" `, (err, res) => {
+                WHERE  s.Name = "${req.body.subjectName}" and g.Class= "${req.body.class}" `, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
