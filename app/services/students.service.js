@@ -83,7 +83,7 @@ Student.notification = (stuId, result) => {
   };
 
 Student.timetable = (stuId, result) => {
-    connection.query(`SELECT s.Class,tb.Time,Day_Week,a.Teacher_ID,t.Name as 'TeacherName',c.STT
+    connection.query(`SELECT s.Class,sub.Name as 'Subject',tb.Time,Day_Week,a.Teacher_ID,t.Name as 'TeacherName',c.STT
                 FROM Assignment a join Timetable tb on tb.Assignment_ID=a.id join Teacher t on t.id=a.Teacher_ID,Student s,Subject sub,ClassTime c
                 WHERE sub.id=a.Subject_ID and s.id = "${stuId}" and s.Class=a.Class and c.Time=tb.Time`, (err, res) => {
 
