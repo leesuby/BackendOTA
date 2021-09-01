@@ -100,7 +100,7 @@
 -absent letter req:
 	+ method:post
 	+ url:https://ota-be-server.herokuapp.com/parents/absent-letter/
-	+ body: {paID:,teacherMail:,topic:,content:}//id parent 
+	+ body: {paID:,teacherID:,topic:,content:}//id parent 
 - absent letter res:
 	+status(500):query thực hiện xảy ra lỗi. send message err
 	+status(404): thực hiện query thành công nhưng k có data. send message err

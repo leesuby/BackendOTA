@@ -174,7 +174,7 @@ exports.view_tuitionfee=(req,res)=>{
               });
             } else {
               res.status(500).json({
-                message: "Error retrieving Account with id " + req.body.stuID
+                message: "Error retrieving tuition with student id " + req.body.stuID
               });
             }
           } else {
