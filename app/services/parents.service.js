@@ -71,7 +71,7 @@ Parent.attendance = (paID, result) => {
 
 
 Parent.timetable = (paID, result) => {
-    connection.query(`SELECT s.Class,tb.Time,Day_Week,a.Teacher_ID,t.Name as 'TeacherName',c.STT
+    connection.query(`SELECT s.Class,sub.Name as 'Subject',tb.Time,Day_Week,a.Teacher_ID,t.Name as 'TeacherName',c.STT
                 FROM Assignment a join Timetable tb on tb.Assignment_ID=a.id join Teacher t on t.id=a.Teacher_ID,Student s,Subject sub,Parent p,ClassTime c
                 WHERE sub.id=a.Subject_ID and p.id = "${paID}" and s.Class=a.Class and p.id_student=s.id and c.Time=tb.Time`, (err, res) => {
       if (err) {
