@@ -131,24 +131,25 @@ exports.edit_attendance=(req,res)=>{
     
     Teacher.editattendance(req,(err,data)=>{
         
-        if (err) {
-            if (err.kind === "Successfully") {
-              res.status(200).json({
-                message: "Edit successfully"
-              });
-            } else {
-              res.status(500).json({
-                message: "Error retrieving database "
-              });
-            }
-          } else {
-            res.status(404).json({
-                message: "Fail",
-    
+      if (err) {
+        if (err.kind === "Successfully") {
+          res.status(200).json({
+            message: "Edit successfully"
+          });
+        } else {
+          if(err.kind==="Not_found")
+          res.status(404).json({
+            message: "Fail"
+          });
+        }
+      } else {
+        res.status(500).json({
+            message: "Error",
 
-              });
-          }
-    });
+
+          });
+      }
+});
 };
 
 
