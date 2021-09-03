@@ -168,21 +168,38 @@ exports.absent_letter=(req,res)=>{
         Content:    req.body.content
     };
     
-    Parent.create_letter(letter,(err,data)=>{
+    Parent.findById(req.body.teacherID,(err,data)=>{
         
-        if (err) {
-            res.status(500).send({
-                message:
-                  err.message || "Some error occurred while absenting the letter."
-              });
+      if (err) {
+          if (err.kind === "Not_found") {
+            res.status(404).json({
+              message:`Not found Receiver with id ${req.body.teacherID}.`
+            });
           } else {
-            res.status(200).json({
-                message: "Absent the letter successfully",
-                mail : data
-
-              });
+            res.status(500).json({
+              message: "Error retrieving Receiver with id " + req.body.teacherID
+            });
           }
-    });
+        } else {
+          Parent.create_letter(letter,(err,data)=>{
+        
+            if (err) {
+                res.status(500).send({
+                    message:
+                      err.message || "Some error occurred while absenting the letter."
+                  });
+              } else {
+                res.status(200).json({
+                    message: "Absent the letter successfully",
+                    mail : data
+    
+                  });
+              }
+        });
+        }
+  });
+
+    
 };
 
 
