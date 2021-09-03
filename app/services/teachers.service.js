@@ -91,6 +91,7 @@ Teacher.editgrade = (req, result) => {
       
       // not found Customer with the id
       result({ kind: "Successfully" }, null);
+      return;
       });
 
       }
