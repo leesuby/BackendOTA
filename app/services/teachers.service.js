@@ -63,10 +63,9 @@ Teacher.viewgrade = (req, result) => {
 };
 
 Teacher.editgrade = (req, result) => {
-    connection.query(`UPDATE Subject s join Grade g on s.id=g.Subject_ID
-                    SET 15phut_1="${req.body.test1}",15phut_2="${req.body.test2}",15phut_3="${req.body.test3}",15phut_4="${req.body.test4}",45phut_1="${req.body.test5}",45phut_2="${req.body.test6}",giuaki="${req.body.test7}",cuoiki="${req.body.test8}"
-                    WHERE  s.Name = "${req.body.subjectName}" and g.Student_ID= "${req.body.StudentID}" `
-               , (err, res) => {
+      connection.query(`SELECT stu.Name as 'StudentName',15phut_1,15phut_2,15phut_3,15phut_4,45phut_1,45phut_2,giuaki,cuoiki
+                FROM Subject s join Grade g on s.id=g.Subject_ID join Student stu on g.Student_ID=stu.ID join Assignment a on s.id=a.Subject_ID
+                WHERE  s.Name = "${req.body.subjectName}" and a.Teacher_ID="${req.body.TeacherID}"`, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -74,14 +73,32 @@ Teacher.editgrade = (req, result) => {
       }
   
       if (res.length) {
-        console.log("Found : ", res);
-        result(null, res);
-        return;
+        connection.query(`UPDATE Subject s join Grade g on s.id=g.Subject_ID
+        SET 15phut_1="${req.body.test1}",15phut_2="${req.body.test2}",15phut_3="${req.body.test3}",15phut_4="${req.body.test4}",45phut_1="${req.body.test5}",45phut_2="${req.body.test6}",giuaki="${req.body.test7}",cuoiki="${req.body.test8}"
+        WHERE  s.Name = "${req.body.subjectName}" and g.Student_ID= "${req.body.StudentID}" `
+         , (err, res) => {
+      if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+      }
+      
+      if (res.length) {
+      console.log("Found : ", res);
+      result(null, res);
+      return;
+      }
+      
+      // not found Customer with the id
+      result({ kind: "Successfully" }, null);
+      });
+
       }
   
       // not found Customer with the id
-      result({ kind: "Successfully" }, null);
+      result({ kind: "Not_found" }, null);
     });
+   
 };
 
 Teacher.viewattendance = (req, result) => {

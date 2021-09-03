@@ -60,13 +60,14 @@ exports.edit_grade=(req,res)=>{
                 message: "Edit successfully"
               });
             } else {
-              res.status(500).json({
-                message: "Error retrieving grade "
+              if(err.kind==="Not_found")
+              res.status(404).json({
+                message: "Fail"
               });
             }
           } else {
-            res.status(404).json({
-                message: "Fail",
+            res.status(500).json({
+                message: "Error",
     
 
               });
