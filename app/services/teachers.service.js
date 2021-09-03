@@ -155,6 +155,7 @@ Teacher.editattendance = (req, result) => {
   
     result({ kind: "Not_found" }, null);
   
+});
 };
 
 
