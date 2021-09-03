@@ -123,9 +123,9 @@ Teacher.viewattendance = (req, result) => {
   };
 
 Teacher.editattendance = (req, result) => {
-    connection.query(`SELECT a.ID_Student as 'StuId',stu.Name as 'StuName',Week1,Week2,Week3,Week4,Week5,Week6,Week7,Week8,Week9,Week10
-                FROM Attendance a join Subject s on a.Subject=s.id join Student stu on stu.id=a.ID_Student join Assignment a on s.id=a.Subject_ID
-                WHERE s.Name = "${req.body.subjectName}" and a.Teacher_ID="${req.body.TeacherID}" `, (err, res) => {
+    connection.query(`SELECT a.ID_Student as 'StuId',stu.Name as 'StuName',Week1,Week2,Week3,Week4,Week5,Week6,Week7,Week8,Week9,Week10 
+    FROM Attendance a join Subject s on a.Subject=s.id join Student stu on stu.id=a.ID_Student join Assignment ass on s.id=ass.Subject_ID 
+    WHERE s.Name = "${req.body.subjectName}" and ass.Teacher_ID="${req.body.TeacherID}" and ass.Class=a.Class" `, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -155,7 +155,8 @@ Teacher.editattendance = (req, result) => {
   
     result({ kind: "Not_found" }, null);
   
-});
+})
+;
 };
 
 
