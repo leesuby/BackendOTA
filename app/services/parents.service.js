@@ -152,4 +152,23 @@ Parent.create_letter = (letter, result) => {
     });
   };
 
+Parent.findById = (teacherId, result) => {
+    connection.query(`SELECT * FROM Teacher WHERE id = "${teacherId}"`, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+  
+      if (res.length) {
+        console.log("Found username: ", res[0]);
+        result(null, res[0]);
+        return;
+      }
+  
+      // not found Customer with the id
+      result({ kind: "Not_found" }, null);
+    });
+  };
+
 module.exports = Parent;
