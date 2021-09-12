@@ -61,7 +61,7 @@ exports.edit_grade=(req,res)=>{
               });
             } else {
               if(err.kind==="Not_found")
-              res.status(404).json({
+              res.status(200).json({
                 message: "FAIL!!! Please check again information of student you want to edit"
               });
             }
@@ -138,7 +138,7 @@ exports.edit_attendance=(req,res)=>{
           });
         } else {
           if(err.kind==="Not_found")
-          res.status(404).json({
+          res.status(200).json({
             message: "FAIL!!! Please check again information of student you want to edit"
           });
         }
